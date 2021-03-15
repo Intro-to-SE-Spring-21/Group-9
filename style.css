@@ -93,3 +93,18 @@ input[type="submit"] {
     width: 800px;
     margin: 0px auto 0px auto;
 }
+
+.postForm {
+    margin-top: 10px;
+}
+
+#postSubmitArea {
+    margin-left: 40px;
+}
+
+#postSubmitButton {
+    margin-right: 40px;
+    background-color: #DCE5EE;
+    float: right;
+    border: 1px solid #666;
+}

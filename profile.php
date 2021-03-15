@@ -22,3 +22,10 @@ if (isset($_GET['u'])) {
 
 <h2>Profile page for: <?php echo "$username"; ?></h2>
 <h2>First name: <?php echo "$firstname"; ?></h2>
+
+<div class="postForm">
+	<textarea id="postSubmitArea" name="post" rows="4" cols="58"></textarea>
+	<input id="postSubmitButton" type="submit" name="send" onclick="javascript:sendpost()" value="Post"/>
+</div>
+<div id="status">
+</div>

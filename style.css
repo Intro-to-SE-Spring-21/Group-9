@@ -31,6 +31,27 @@
     margin-left: 135px;
 }
 
+#headerTitle {
+    background-color: #00B9ED;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+    padding-top: 10px;
+    margin-right: 4%;
+}
+
+#headerTitle a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 24px;
+    background-color: #00B9ED;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .headerObject {
     background-color: #00B9ED;
     position: absolute;

@@ -2,10 +2,10 @@
 session_start();
 include ("connect.php");
 if (!isset($_SESSION["user_login"])) {
-$username = "";
+$user = "";
 }
 else {
-$username = $_SESSION["user_login"];
+$user = $_SESSION["user_login"];
 }
 ?>
 
@@ -32,7 +32,7 @@ $username = $_SESSION["user_login"];
           if (isset($_SESSION["user_login"])) {
           echo '
           <div class="headerObject">
-            <a href="'.$username.'">Profile</a>
+            <a href="'.$user.'">Profile</a>
             <a href="logout.php">Logout</a>
           </div>
           ';

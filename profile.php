@@ -29,3 +29,18 @@ if (isset($_GET['u'])) {
 </div>
 <div id="status">
 </div>
+<div class="profilePosts">
+<?php
+$getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$username' ORDER BY id DESC LIMIT 10") or die(mysqli_error($conn));
+while ($row = mysqli_fetch_assoc($getposts)) {
+	$id = $row['id'];
+	$body = $row['body'];
+	$date_added = $row['date_added'];
+	$added_by = $row['added_by'];
+	$user_posted_to = $row['user_posted_to'];
+	echo "
+	<div class='posted_by'><a href='$added_by'>$added_by</a> - $date_added - </div>&nbsp;&nbsp;$body<br><hr>
+	";
+}
+?>
+</div>

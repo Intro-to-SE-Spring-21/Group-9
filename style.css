@@ -95,16 +95,54 @@ input[type="submit"] {
 }
 
 .postForm {
-    margin-top: 10px;
+    display: block;
+    width: 75%;
+    margin: 0px auto 0px auto;
+    height: 70px;
+    background-color:#FFFFFF;
+    padding: 5px;
 }
 
 #postSubmitArea {
-    margin-left: 40px;
+    margin-left: 10px;
+    margin-right: 40px;
 }
 
 #postSubmitButton {
-    margin-right: 40px;
-    background-color: #DCE5EE;
     float: right;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 80px;
+    background-color: #DCE5EE;
     border: 1px solid #666;
+}
+
+.profilePosts {
+    margin-top: 50px;
+    display: block;
+    width: 75%;
+    height: 414px;
+    background-color:#FFFFFF;
+    padding: 5px;
+    text-align: justify;
+}
+
+.profilePosts hr {
+    background-color: #DCE5EE;
+    height: 1px;
+    border: 0px;
+}
+
+.posted_by {
+    font-weight: 800;
+    color: #000;
+    float: left;
+}
+
+.posted_by a {
+    text-decoration: none;
+}
+
+.posted_by a:hover {
+    text-decoration: underline;
 }

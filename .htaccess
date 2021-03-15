@@ -1,0 +1,8 @@
+
+# HTID:17000362: DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES BELOW
+php_value display_errors 1
+php_flag output_buffering on;
+RewriteEngine On
+RewriteRule ^([a-zA-Z0-9_-]+)$ profile.php?u=$1
+RewriteRule ^([a-zA-Z0-9_-]+)/$ profile.php?u=$1
+# DO NOT REMOVE OR MODIFY THIS LINE AND THE LINES ABOVE HTID:17000362:

@@ -31,6 +31,27 @@
     margin-left: 135px;
 }
 
+#headerTitle {
+    background-color: #00B9ED;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    height: 40px;
+    padding-top: 10px;
+    margin-right: 4%;
+}
+
+#headerTitle a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 24px;
+    background-color: #00B9ED;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 .headerObject {
     background-color: #00B9ED;
     position: absolute;
@@ -92,4 +113,58 @@ input[type="submit"] {
 .tableWrapper {
     width: 800px;
     margin: 0px auto 0px auto;
+}
+
+.postForm {
+    display: block;
+    width: 75%;
+    margin: 0px auto 0px auto;
+    height: 70px;
+    background-color:#FFFFFF;
+    padding: 5px;
+}
+
+#postSubmitArea {
+    float: left;
+    margin-left: 10px;
+    margin-right: 40px;
+}
+
+#postSubmitButton {
+    float: left;
+    margin-left: 30px;
+    background-color: #DCE5EE;
+    border: 1px solid #666;
+    height: 65px;
+    width: 65px;
+}
+
+.profilePosts {
+    margin-top: 50px;
+    display: block;
+    width: 75%;
+    height: 414px;
+    background-color:#FFFFFF;
+    padding: 5px;
+    text-align: justify;
+}
+
+.profilePosts hr {
+    background-color: #DCE5EE;
+    height: 1px;
+    border: 0px;
+}
+
+.posted_by {
+    font-weight: 800;
+    color: #000;
+    float: left;
+}
+
+.posted_by a {
+    text-decoration: none;
+}
+
+.posted_by a:hover {
+    text-decoration: underline;
 }

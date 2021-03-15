@@ -26,7 +26,7 @@ echo "Your password must be between 5 and 30 characters long.";
 }
 else {
 $pswd = md5($pswd);
-$query = mysqli_query($conn, "INSERT INTO users VALUES ('$un', '$fn', '$ln', '$pswd')");
+$query = mysqli_query($conn, "INSERT INTO users VALUES (NULL, '$un', '$fn', '$ln', '$pswd')");
 die("<h2>Welcome to Group-9</h2>Login to your account to get started.
     <META HTTP-EQUIV='refresh' CONTENT='4;URL=index.php'>");
 }

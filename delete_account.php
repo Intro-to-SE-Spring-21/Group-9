@@ -1,12 +1,12 @@
 <?php
 include ("header.php");
 
-if ($username) {
+if ($user) {
 if (isset($_POST['no'])) {
     exit("<META HTTP-EQUIV='refresh' CONTENT='0;URL=home.php'>");
 }
 if (isset($_POST['yes'])) {
-    $sql = mysqli_query($conn, "DELETE FROM users WHERE username='$username'");
+    $sql = mysqli_query($conn, "DELETE FROM users WHERE username='$user'");
     echo "Your Account has been deleted.";
     exit("<META HTTP-EQUIV='refresh' CONTENT='4;URL=logout.php'>");
 }

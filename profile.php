@@ -19,6 +19,7 @@ if (isset($_GET['u'])) {
 	}
 }
 
+
 $post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
@@ -38,7 +39,7 @@ else {
 <div id="status">
 </div>
 <div class="postForm">
-	<form action="<?php echo $username; ?>" method="POST">
+	<form action="" method="POST">
 	<textarea id="postSubmitArea" name="post" rows="4" cols="58"></textarea>
 	<input id="postSubmitButton" type="submit" name="send"  value="Post"/>
 </form>
@@ -56,6 +57,11 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 	<div class='posted_by'>
 	Posted by:
 							<a href='$added_by'>$added_by</a> on $date_added</div>
+							<div class='like_button'>
+								<form action='' method='POST'>
+									<input type='submit' name='like' value='Like'>
+								</form>
+							</div>
 							<br><br>
 							<div  style='max-width: 600px; font-size: 16px;'>
 							$body<br><br>

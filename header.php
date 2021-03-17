@@ -14,7 +14,6 @@ $user = $_SESSION["user_login"];
   <head>
     <title>Group 9</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script src="main.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="header">

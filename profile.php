@@ -53,19 +53,24 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 	$date_added = $row['date_added'];
 	$added_by = $row['added_by'];
 	$user_posted_to = $row['user_posted_to'];
+	$likes = 0;
 	echo "
 	<div class='posted_by'>
 	Posted by:
-							<a href='$added_by'>$added_by</a> on $date_added</div>
-							<div class='like_button'>
-								<form action='' method='POST'>
-									<input type='submit' name='like' value='Like'>
+							<a href='$added_by'>$added_by</a> on $date_added &emsp; Likes: $likes</div>
+							<div>
+								<form action='' method='POST' style='margin-left: 400px;'>
+									<input type='submit' name='like' value='Like' style='background-color: #00B9ED; color: #000;'>
+									<input type='submit' name='dislike' value='Disike' style='background-color: #00B9ED; color: #000;'>
+									<input type='submit' name='delete_post' value='Delete' style='margin-left: 50px; background-color: #00B9ED; color: #000;'>
 								</form>
 							</div>
-							<br><br>
+							
+							<br>
 							<div  style='max-width: 600px; font-size: 16px;'>
-							$body<br><br>
+							$body<br>
 							</div>
+							<br><br>
 							<hr />	";
 }
 ?>

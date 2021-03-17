@@ -168,10 +168,3 @@ input[type="submit"] {
 .posted_by a:hover {
     text-decoration: underline;
 }
-
-.like_button {
-    display: block;
-    margin-left: 20px;
-    height: 20px;
-    width: 30px;
-}

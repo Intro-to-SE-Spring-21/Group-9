@@ -19,7 +19,6 @@ if (isset($_GET['u'])) {
 	}
 }
 
-
 $post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
@@ -62,7 +61,7 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 								<form action='' method='POST' style='margin-left: 400px;'>
 									<input type='submit' name='like' value='Like' style='background-color: #00B9ED; color: #000;'>
 									<input type='submit' name='dislike' value='Disike' style='background-color: #00B9ED; color: #000;'>
-									<input type='submit' name='delete_post' value='Delete' style='margin-left: 50px; background-color: #00B9ED; color: #000;'>
+									<input type='submit' name='delete_post' value='Delete' style='margin-left: 50px; background-color: #CCC; color: #000;'>
 								</form>
 							</div>
 							
@@ -72,6 +71,9 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 							</div>
 							<br><br>
 							<hr />	";
+}
+if (isset($_POST['delete_post'])) {
+    $sqlDeleteCommand = mysqli_query($conn, "DELETE FROM posts WHERE id='$id'");
 }
 ?>
 </div>

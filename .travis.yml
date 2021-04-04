@@ -3,8 +3,8 @@ language: php
 php:
   - 7.4
   env: DB=travis:phpunit
-  - 7.3
-  env: DB=travis:phpunit
+  ##- 7.3
+  ##env: DB=travis:phpunit
   
 env:
   - DB=mysql

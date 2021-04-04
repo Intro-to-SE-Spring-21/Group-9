@@ -73,6 +73,7 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 							<hr />	";
 }
 if (isset($_POST['delete_post'])) {
+	if ($user == )
     $sqlDeleteCommand = mysqli_query($conn, "DELETE FROM posts WHERE id='$id'");
 }
 ?>

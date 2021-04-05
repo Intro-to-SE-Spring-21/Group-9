@@ -12,7 +12,7 @@
 * HTML
 * CSS
 * SQL
-* JQuery
+* jQuery
 
 
 ## Project Description

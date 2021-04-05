@@ -19,6 +19,31 @@ if (isset($_GET['u'])) {
 	}
 }
 
+if (isset($_POST['liked'])) {
+	$postid = $_POST['postid'];
+	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
+	$row = mysqli_fetch_array($result);
+	$n = $row['likes'];
+
+	mysqli_query($conn, "INSERT INTO likes (username, postid) VALUES ($user, $postid)");
+	mysqli_query($conn, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
+
+	echo $n+1;
+	exit();
+}
+if (isset($_POST['unliked'])) {
+	$postid = $_POST['postid'];
+	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
+	$row = mysqli_fetch_array($result);
+	$n = $row['likes'];
+
+	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username="&user"");
+	mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
+	
+	echo $n-1;
+	exit();
+}
+
 $post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
@@ -46,7 +71,36 @@ else {
 <div class="profilePosts">
 <?php
 $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$username' ORDER BY id DESC LIMIT 10") or die(mysqli_error($conn));
-while ($row = mysqli_fetch_assoc($getposts)) {
+?>
+
+<?php while ($row = mysqli_fetch_assoc($getposts)) { ?>
+
+<div class="post">
+	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added &emsp"; ?>
+
+	<div style="padding: 2px; margin-top: 5px;">
+	<?php 
+		// determine if user has already liked this post
+		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username="$user" AND postid="$row['id']"");
+
+		if (mysqli_num_rows($results) == 1 ): ?>
+			<!-- user already likes post -->
+			<span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+		<?php else: ?>
+			<!-- user has not yet liked post -->
+			<span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+		<?php endif ?>
+
+		<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
+	</div>
+</div>
+
+<?php } ?>
+
+<?php
+/*while ($row = mysqli_fetch_assoc($getposts)) {
 	$id = $row['id'];
 	$body = $row['body'];
 	$date_added = $row['date_added'];
@@ -75,6 +129,50 @@ while ($row = mysqli_fetch_assoc($getposts)) {
 if (isset($_POST['delete_post'])) {
 	if ($user == )
     $sqlDeleteCommand = mysqli_query($conn, "DELETE FROM posts WHERE id='$id'");
-}
+}*/
 ?>
 </div>
+<script src="jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		// when the user clicks on like
+		$('.like').on('click', function(){
+			var postid = $(this).data('id');
+			    $post = $(this);
+
+			$.ajax({
+				url: 'profile.php',
+				type: 'post',
+				data: {
+					'liked': 1,
+					'postid': postid
+				},
+				success: function(response){
+					$post.parent().find('span.likes_count').text(response + " likes");
+					$post.addClass('hide');
+					$post.siblings().removeClass('hide');
+				}
+			});
+		});
+
+		// when the user clicks on unlike
+		$('.unlike').on('click', function(){
+			var postid = $(this).data('id');
+		    $post = $(this);
+
+			$.ajax({
+				url: 'index.php',
+				type: 'post',
+				data: {
+					'unliked': 1,
+					'postid': postid
+				},
+				success: function(response){
+					$post.parent().find('span.likes_count').text(response + " likes");
+					$post.addClass('hide');
+					$post.siblings().removeClass('hide');
+				}
+			});
+		});
+	});
+</script>

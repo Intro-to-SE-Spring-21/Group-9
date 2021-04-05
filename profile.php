@@ -37,7 +37,7 @@ if (isset($_POST['unliked'])) {
 	$row = mysqli_fetch_array($result);
 	$n = $row['likes'];
 
-	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username=&user");
+	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username='$user'");
 	mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
 	
 	echo $n-1;
@@ -86,17 +86,9 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 
 	<div style="padding: 2px; margin-top: 5px;">
 	<?php 
-		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");
-
-		if (mysqli_num_rows($results) === 1 ): ?>
-			<!-- user already likes post -->
-			<span class="unlike fa fa-thumbs-up" data-id="<?php echo $rowid; ?>"></span> 
-			<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $rowid; ?>"></span> 
-		<?php else: ?>
-			<!-- user has not yet liked post -->
-			<span class="like fa fa-thumbs-o-up" data-id="<?php echo $rowid; ?>"></span> 
-			<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $rowid; ?>"></span> 
-		<?php endif ?>
+		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");?>
+		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
+		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
 
 		<span class="likes_count"><?php echo $row['likes']; ?></span>
 		<div  style='max-width: 600px; font-size: 16px;'>
@@ -160,8 +152,6 @@ if (isset($_POST['delete_post'])) {
 				},
 				success: function(response){
 					$post.parent().find('span.likes_count').html(response + " likes");
-					$post.addClass('hide');
-					$post.siblings().removeClass('hide');
 				}
 			});
 		});
@@ -180,8 +170,6 @@ if (isset($_POST['delete_post'])) {
 				},
 				success: function(response){
 					$post.parent().find('span.likes_count').html(response + " likes");
-					$post.addClass('hide');
-					$post.siblings().removeClass('hide');
 				}
 			});
 		});

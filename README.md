@@ -12,6 +12,7 @@
 * CSS
 * PHP
 * SQL
+* jQuery
 
 
 ## Project Description

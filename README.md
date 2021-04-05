@@ -33,7 +33,8 @@ A social media application that resembles Twitter.  We used 000webhost to host a
 4. Following (Extra)
 * Follow User
 * Unfollow User
-
+5. Search Bar (Extra)
+* Search Users
 
 ## Website Deployment
 The GitHub repo is cloned and updated on 000webhost.  The GitHub repo has no connection to the databases on 000webhost.  The GitHub repo serves as a source control, but it will not have full functionality.  The fully functional site can be accessed at: https://intro-se-group-9.000webhostapp.com/ <br>

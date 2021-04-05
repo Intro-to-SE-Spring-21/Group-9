@@ -25,7 +25,7 @@ if (isset($_POST['liked'])) {
 	$row = mysqli_fetch_array($result);
 	$n = $row['likes'];
 
-	mysqli_query($conn, "INSERT INTO likes (username, postid) VALUES ($user, $postid)");
+	mysqli_query($conn, "INSERT INTO likes (id, username, postid) VALUES (NULL, '$user', $postid)");
 	mysqli_query($conn, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
 
 	echo $n+1;
@@ -37,7 +37,7 @@ if (isset($_POST['unliked'])) {
 	$row = mysqli_fetch_array($result);
 	$n = $row['likes'];
 
-	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username="&user"");
+	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username=&user");
 	mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
 	
 	echo $n-1;
@@ -50,7 +50,7 @@ $date_added = date("Y-m-d");
 $added_by = $user;
 $user_posted_to = $username;
 
-$sqlCommand = "INSERT INTO posts VALUES(NULL, '$post', '$date_added', '$added_by', '$user_posted_to')";
+$sqlCommand = "INSERT INTO posts VALUES(NULL, '$post', '$date_added', '$added_by', '$user_posted_to', 0)";
 $query = mysqli_query($conn, $sqlCommand) or die (mysqli_error($conn));
 }
 else {
@@ -73,27 +73,38 @@ else {
 $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$username' ORDER BY id DESC LIMIT 10") or die(mysqli_error($conn));
 ?>
 
-<?php while ($row = mysqli_fetch_assoc($getposts)) { ?>
+<?php while ($row = mysqli_fetch_assoc($getposts)) {
+	$rowid = $row['id'];
+	$body = $row['body'];
+	$date_added = $row['date_added'];
+	$added_by = $row['added_by'];
+	$user_posted_to = $row['user_posted_to'];
+	?>
 
 <div class="post">
-	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added &emsp"; ?>
+	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added"; ?>
 
 	<div style="padding: 2px; margin-top: 5px;">
 	<?php 
-		// determine if user has already liked this post
-		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username="$user" AND postid="$row['id']"");
+		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");
 
-		if (mysqli_num_rows($results) == 1 ): ?>
+		if (mysqli_num_rows($results) === 1 ): ?>
 			<!-- user already likes post -->
-			<span class="unlike fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
-			<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<span class="unlike fa fa-thumbs-up" data-id="<?php echo $rowid; ?>"></span> 
+			<span class="like hide fa fa-thumbs-o-up" data-id="<?php echo $rowid; ?>"></span> 
 		<?php else: ?>
 			<!-- user has not yet liked post -->
-			<span class="like fa fa-thumbs-o-up" data-id="<?php echo $row['id']; ?>"></span> 
-			<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $row['id']; ?>"></span> 
+			<span class="like fa fa-thumbs-o-up" data-id="<?php echo $rowid; ?>"></span> 
+			<span class="unlike hide fa fa-thumbs-up" data-id="<?php echo $rowid; ?>"></span> 
 		<?php endif ?>
 
-		<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
+		<span class="likes_count"><?php echo $row['likes']; ?></span>
+		<div  style='max-width: 600px; font-size: 16px;'>
+			<?php echo $body ?> 
+			<br>
+		</div>
+		<br><br>
+		<hr />
 	</div>
 </div>
 
@@ -132,7 +143,7 @@ if (isset($_POST['delete_post'])) {
 }*/
 ?>
 </div>
-<script src="jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
 		// when the user clicks on like
@@ -148,7 +159,7 @@ if (isset($_POST['delete_post'])) {
 					'postid': postid
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').text(response + " likes");
+					$post.parent().find('span.likes_count').html(response + " likes");
 					$post.addClass('hide');
 					$post.siblings().removeClass('hide');
 				}
@@ -161,14 +172,14 @@ if (isset($_POST['delete_post'])) {
 		    $post = $(this);
 
 			$.ajax({
-				url: 'index.php',
+				url: 'profile.php',
 				type: 'post',
 				data: {
 					'unliked': 1,
 					'postid': postid
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').text(response + " likes");
+					$post.parent().find('span.likes_count').html(response + " likes");
 					$post.addClass('hide');
 					$post.siblings().removeClass('hide');
 				}
@@ -176,3 +187,5 @@ if (isset($_POST['delete_post'])) {
 		});
 	});
 </script>
+</body>
+</html>

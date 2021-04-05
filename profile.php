@@ -19,31 +19,6 @@ if (isset($_GET['u'])) {
 	}
 }
 
-if (isset($_POST['liked'])) {
-	$postid = $_POST['postid'];
-	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
-	$row = mysqli_fetch_array($result);
-	$n = $row['likes'];
-
-	mysqli_query($conn, "INSERT INTO likes (id, username, postid) VALUES (NULL, '$user', $postid)");
-	mysqli_query($conn, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
-
-	echo $n+1;
-	exit();
-}
-if (isset($_POST['unliked'])) {
-	$postid = $_POST['postid'];
-	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
-	$row = mysqli_fetch_array($result);
-	$n = $row['likes'];
-
-	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username='$user'");
-	mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
-	
-	echo $n-1;
-	exit();
-}
-
 $post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
@@ -87,8 +62,8 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 	<div style="padding: 2px; margin-top: 5px;">
 	<?php 
 		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");?>
-		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
-		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
+		<span class="like" data-id="<?php echo $rowid; ?>" data-user="<?php echo $user; ?>">Like</span> 
+		<span class="unlike" data-id="<?php echo $rowid; ?>" data-user="<?php echo $user; ?>">Dislike</span>
 
 		<span class="likes_count"><?php echo $row['likes']; ?></span>
 		<div  style='max-width: 600px; font-size: 16px;'>
@@ -144,7 +119,7 @@ if (isset($_POST['delete_post'])) {
 			    $post = $(this);
 
 			$.ajax({
-				url: 'profile.php',
+				url: 'like.php',
 				type: 'post',
 				data: {
 					'liked': 1,
@@ -162,7 +137,7 @@ if (isset($_POST['delete_post'])) {
 		    $post = $(this);
 
 			$.ajax({
-				url: 'profile.php',
+				url: 'like.php',
 				type: 'post',
 				data: {
 					'unliked': 1,

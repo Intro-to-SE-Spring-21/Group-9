@@ -15,4 +15,5 @@ before_script:
 env:
   - DB=mysql
 
-script: phpunit
+script:
+  - vendor/bin/phpunit --coverage-clover coverage.xml

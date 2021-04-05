@@ -33,3 +33,5 @@ A social media application that resembles Twitter.
 4. Following (Extra)
 * Follow User
 * Unfollow User
+5. Search Bar (Extra)
+* Search Users

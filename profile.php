@@ -62,10 +62,10 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 	<div style="padding: 2px; margin-top: 5px;">
 	<?php 
 		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");?>
-		<span class="like" data-id="<?php echo $rowid; ?>" data-user="<?php echo $user; ?>">Like</span> 
-		<span class="unlike" data-id="<?php echo $rowid; ?>" data-user="<?php echo $user; ?>">Dislike</span>
+		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
+		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
 
-		<span class="likes_count"><?php echo $row['likes']; ?></span>
+		<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
 		<div  style='max-width: 600px; font-size: 16px;'>
 			<?php echo $body ?> 
 			<br>

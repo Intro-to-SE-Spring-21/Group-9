@@ -60,8 +60,7 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added"; ?>
 
 	<div style="padding: 2px; margin-top: 5px;">
-	<?php 
-		$results = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid='$rowid'");?>
+		<span class="delete" data-id="<?php echo $rowid; ?>">Delete</span>
 		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
 		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
 

@@ -309,3 +309,40 @@ input[type="submit"] {
 .follower a:hover {
     text-decoration: underline;
 }
+
+.following {
+    display: block;
+    float: top;
+    width: 30%;
+    margin: 10px auto;
+    margin-top: 40px;
+    margin-right: 10px;
+    font-weight: 800;
+    color: #000;
+}
+
+.following p {
+    font-size: 24px;
+}
+
+.followed {
+    width: 30%;
+	margin: 10px auto;
+    margin-right: 10px;
+	border: 3px solid #cbcbcb;
+	padding: 5px 10px 10px 10px;
+    font-weight: 800;
+    color: #000;
+    float: top;
+    font-size: 16px;
+    text-align: center;
+}
+
+.followed a {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.followed a:hover {
+    text-decoration: underline;
+}

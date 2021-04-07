@@ -97,6 +97,26 @@ $getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$userna
 
 <?php } ?>
 
+	<div class="following">
+		<p>Following</p>
+	</div>
+
+<?php
+$getfollowing = mysqli_query($conn, "SELECT * FROM follows WHERE follower='$username'");
+?>
+
+<?php while ($rowfollowing = mysqli_fetch_assoc($getfollowing)) {
+	$following = $rowfollowing['followed'];
+	?>
+
+	<div class="followed">
+		<?php echo "<a href='$following'>$following</a>"; ?>
+		<br>
+	</div>
+	
+
+<?php } ?>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

@@ -36,7 +36,7 @@ $user = $_SESSION["user_login"];
             <a href="'.$user.'">Profile</a>
             <a href="logout.php">Logout</a>
             <form action="delete_account.php" method="POST">
-              <input type="submit" name="deleteaccount" value="Delete My Account"/>
+              <input type="submit" name="deleteaccount" value="Delete Account" style="font-size: 22px;"/>
             </form>
           </div>
           ';

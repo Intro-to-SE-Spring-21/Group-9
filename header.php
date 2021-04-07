@@ -23,8 +23,9 @@ $user = $_SESSION["user_login"];
           </div>
           
           <div class="headerSearch">
-            <form action="search.php" method="GET" id="search">
+            <form action="search.php" method="POST" id="search">
               <input type="text" name="q" size="60" placeholder="Search for user ..."/>
+              <input type="submit" name="qsubmit" value="">
             </form>
           </div>
           

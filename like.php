@@ -16,7 +16,7 @@ if (isset($_POST['liked'])) {
     $postuser = $row['added_by'];
 
 	$liked = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid=$postid");
-	$likedrows = mysqli_num_rows($result);
+	$likedrows = mysqli_num_rows($liked);
 
     if ($likedrows == 0) {
         mysqli_query($conn, "INSERT INTO likes (id, username, postid) VALUES (NULL, '$user', $postid)");
@@ -38,9 +38,20 @@ if (isset($_POST['unliked'])) {
 	$row = mysqli_fetch_array($result);
 	$n = $row['likes'];
 
-	mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username='$user'");
-	mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
-	
-	echo $n-1;
-	exit();
+	$liked = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid=$postid");
+	$likedrows = mysqli_num_rows($liked);
+
+    if ($likedrows == 0) {
+        echo $n;
+		echo "You have not liked this post.";
+		exit();
+    }
+
+	else {
+		mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid AND username='$user'");
+		mysqli_query($conn, "UPDATE posts SET likes=$n-1 WHERE id=$postid");
+		echo $n-1;
+		exit();
+		
+	}
 }

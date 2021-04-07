@@ -73,52 +73,42 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 		<hr />
 	</div>
 </div>
-
 <?php } ?>
-
-<?php
-/*while ($row = mysqli_fetch_assoc($getposts)) {
-	$id = $row['id'];
-	$body = $row['body'];
-	$date_added = $row['date_added'];
-	$added_by = $row['added_by'];
-	$user_posted_to = $row['user_posted_to'];
-	$likes = 0;
-	echo "
-	<div class='posted_by'>
-	Posted by:
-							<a href='$added_by'>$added_by</a> on $date_added &emsp; Likes: $likes</div>
-							<div>
-								<form action='' method='POST' style='margin-left: 400px;'>
-									<input type='submit' name='like' value='Like' style='background-color: #00B9ED; color: #000;'>
-									<input type='submit' name='dislike' value='Disike' style='background-color: #00B9ED; color: #000;'>
-									<input type='submit' name='delete_post' value='Delete' style='margin-left: 50px; background-color: #CCC; color: #000;'>
-								</form>
-							</div>
-							
-							<br>
-							<div  style='max-width: 600px; font-size: 16px;'>
-							$body<br>
-							</div>
-							<br><br>
-							<hr />	";
-}
-if (isset($_POST['delete_post'])) {
-	if ($user == )
-    $sqlDeleteCommand = mysqli_query($conn, "DELETE FROM posts WHERE id='$id'");
-}*/
-?>
 </div>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
+		// when the user clicks on delete
+		$('.delete').on('click', function(){
+			var postid = $(this).data('id');
+		    $post = $(this);
+
+			$.ajax({
+				url: 'post.php',
+				type: 'post',
+				data: {
+					'deleted': 1,
+					'postid': postid
+				},
+				success: function(response){
+					if (response) {
+						$post.parent().parent().remove();
+					}
+					else {
+						alert("You cannot delete this post.");
+					}				
+				}
+			});
+		});
+
 		// when the user clicks on like
 		$('.like').on('click', function(){
 			var postid = $(this).data('id');
 			    $post = $(this);
 
 			$.ajax({
-				url: 'like.php',
+				url: 'post.php',
 				type: 'post',
 				data: {
 					'liked': 1,
@@ -136,7 +126,7 @@ if (isset($_POST['delete_post'])) {
 		    $post = $(this);
 
 			$.ajax({
-				url: 'like.php',
+				url: 'post.php',
 				type: 'post',
 				data: {
 					'unliked': 1,

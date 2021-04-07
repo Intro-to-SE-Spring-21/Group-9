@@ -9,12 +9,33 @@ else {
 $user = $_SESSION["user_login"];
 }
 
+if (isset($_POST['deleted'])) {
+	$postid = $_POST['postid'];
+	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
+	$row = mysqli_fetch_array($result);
+	$added_by = $row['added_by'];
+	$user_posted_to = $row['user_posted_to'];
+
+	$liked = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid=$postid");
+	$likedrows = mysqli_num_rows($liked);
+
+    if (in_array($user, array($added_by, $user_posted_to))) {
+        mysqli_query($conn, "DELETE FROM posts WHERE id=$postid");
+		mysqli_query($conn, "DELETE FROM likes WHERE postid=$postid");
+		echo "1";
+		exit();
+    }
+
+	else {
+		exit();
+	}
+}
+
 if (isset($_POST['liked'])) {
 	$postid = $_POST['postid'];
 	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");
 	$row = mysqli_fetch_array($result);
 	$n = $row['likes'];
-    $postuser = $row['added_by'];
 
 	$liked = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid=$postid");
 	$likedrows = mysqli_num_rows($liked);

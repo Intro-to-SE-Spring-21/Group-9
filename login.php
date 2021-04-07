@@ -10,6 +10,6 @@ if (isset($_POST["user_login"]) && isset($_POST["password_login"])) {
 		$_SESSION["user_login"] = $user_login;
         exit("<META HTTP-EQUIV='refresh' CONTENT='0;URL={$_SESSION['user_login']}'>");
 	} else {
-		echo 'That information is incorrect, try again';
+		echo '<script>alert("Incorrect username or password.");</script>';
 	}
 }

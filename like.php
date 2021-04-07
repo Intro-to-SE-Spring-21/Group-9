@@ -15,14 +15,23 @@ if (isset($_POST['liked'])) {
 	$n = $row['likes'];
     $postuser = $row['added_by'];
 
-    if () {
+	$liked = mysqli_query($conn, "SELECT * FROM likes WHERE username='$user' AND postid=$postid");
+	$likedrows = mysqli_num_rows($result);
+
+    if ($likedrows == 0) {
         mysqli_query($conn, "INSERT INTO likes (id, username, postid) VALUES (NULL, '$user', $postid)");
 	    mysqli_query($conn, "UPDATE posts SET likes=$n+1 WHERE id=$postid");
+		echo $n+1;
+		exit();
     }
 
-	echo $n+1;
-	exit();
+	else {
+		echo $n;
+		echo "You have already liked this post.";
+		exit();
+	}
 }
+
 if (isset($_POST['unliked'])) {
 	$postid = $_POST['postid'];
 	$result = mysqli_query($conn, "SELECT * FROM posts WHERE id=$postid");

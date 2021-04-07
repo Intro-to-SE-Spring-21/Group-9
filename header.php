@@ -14,7 +14,6 @@ $user = $_SESSION["user_login"];
   <head>
     <title>Group 9</title>
     <link rel="stylesheet" type="text/css" href="style.css"/>
-    <script src="main.js" type="text/javascript"></script>
   </head>
   <body>
     <div class="header">
@@ -36,6 +35,9 @@ $user = $_SESSION["user_login"];
           <div class="headerObject">
             <a href="'.$user.'">Profile</a>
             <a href="logout.php">Logout</a>
+            <form action="delete_account.php" method="POST">
+              <input type="submit" name="deleteaccount" value="Delete Account" style="font-size: 22px;"/>
+            </form>
           </div>
           ';
           }

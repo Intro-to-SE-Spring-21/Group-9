@@ -8,7 +8,7 @@ if (isset($_POST["user_login"]) && isset($_POST["password_login"])) {
 	$userCount = mysqli_num_rows($sql); //Count the number of rows returned
 	if ($userCount == 1) {
 		$_SESSION["user_login"] = $user_login;
-        exit("<META HTTP-EQUIV='refresh' CONTENT='0;URL=home.php'>");
+        exit("<META HTTP-EQUIV='refresh' CONTENT='0;URL={$_SESSION['user_login']}'>");
 	} else {
 		echo 'That information is incorrect, try again';
 	}

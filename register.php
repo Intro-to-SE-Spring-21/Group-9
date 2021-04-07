@@ -28,7 +28,7 @@ else {
 $pswd = md5($pswd);
 $query = mysqli_query($conn, "INSERT INTO users VALUES (NULL, '$un', '$fn', '$ln', '$pswd')");
 die("<h2>Welcome to Group-9</h2>Login to your account to get started.
-    <META HTTP-EQUIV='refresh' CONTENT='4;URL=index.php'>");
+    <META HTTP-EQUIV='refresh' CONTENT='2;URL=index.php'>");
 }
 }
 }

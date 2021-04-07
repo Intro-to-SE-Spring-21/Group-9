@@ -42,6 +42,7 @@ else {
 </div>
 </div>
 <div class="profilePosts">
+
 <?php
 $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$username' ORDER BY id DESC LIMIT 10") or die(mysqli_error($conn));
 ?>
@@ -54,26 +55,47 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 	$user_posted_to = $row['user_posted_to'];
 	?>
 
-<div class="post">
-	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added"; ?>
+	<div class="post">
+		<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added"; ?>
 
-	<div style="padding: 2px; margin-top: 5px;">
-		<span class="delete" data-id="<?php echo $rowid; ?>" style="margin-right: 20px;">Delete</span>
-		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
-		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
+		<div style="padding: 2px; margin-top: 5px;">
+			<span class="delete" data-id="<?php echo $rowid; ?>" style="margin-right: 20px;">Delete</span>
+			<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
+			<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
 
-		<span class="likes_count" style="background-color: #eff5f9; color: #000; margin-left: 50px;"><?php echo $row['likes']; ?> likes</span>
-		<div  style="padding-top: 10px;">
+			<span class="likes_count" style="background-color: #eff5f9; color: #000; margin-left: 50px;"><?php echo $row['likes']; ?> likes</span>
+			<div  style="padding-top: 10px;">
+				<hr />
+				<br>
+				<?php echo $body ?> 
+				<br>
+			</div>
+			<br><br>
 			<hr />
-			<br>
-			<?php echo $body ?> 
-			<br>
 		</div>
-		<br><br>
-		<hr />
 	</div>
-</div>
 <?php } ?>
+
+	<div class="followers">
+		<p>Followers</p>
+	</div>
+
+<?php
+$getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$username'");
+?>
+
+<?php while ($rowfollow = mysqli_fetch_assoc($getfollows)) {
+	$follower = $rowfollow['follower'];
+	?>
+
+	<div class="follower">
+		<?php echo "<a href='$follower'>$follower</a>"; ?>
+		<br>
+	</div>
+	
+
+<?php } ?>
+
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>

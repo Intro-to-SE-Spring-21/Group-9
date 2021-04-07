@@ -34,10 +34,11 @@ else {
 ?>
 <div class="profileTitle">
 	<p><?php echo "$username"; ?></p>
+	<span class="follow" data-id="<?php echo $username; ?>">Follow</span>
 </div>
 
 <div class="postForm">
-	<textarea id="postSubmitArea" name="post" rows="4" cols="58"></textarea>
+	<textarea id="postSubmitArea" name="post" rows="4" cols="58" placeholder="Enter post here..."></textarea>
 	<input id="postSubmitButton" type="submit" name="send" value="Post" data-id="<?php echo $username; ?>"/>
 </div>
 </div>
@@ -102,6 +103,23 @@ $getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$userna
 <script>
 	$(document).ready(function(){
 		
+		// when the user clicks on follow
+		$('.follow').on('click', function(){
+			var followed = $(this).data('id');
+
+			$.ajax({
+				url: 'follow.php',
+				type: 'post',
+				data: {
+					'follow': 1,
+					'followed': followed
+				},
+				success: function(response){
+
+				}
+			});
+		});
+
 		// when the user clicks on post
 		$('#postSubmitButton').on('click', function(){
 			var posttext = $('#postSubmitArea').val();

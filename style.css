@@ -160,6 +160,23 @@ input[type="submit"] {
     font-size: 60px;
 }
 
+.profileTitle span {
+    background-color: #00B9ED;
+    float: right;
+    border: 0px;
+    font-size: 16px;
+    color: #FFFFFF;
+    padding: 5px;
+    margin-bottom: 3px;
+    margin-right: 7px;
+    margin-top: 15px;
+    border-radius: 7px;
+}
+
+.profileTitle span:hover {
+    background-color: #0b87aa;
+}
+
 .postForm {
     display: block;
     width: 50%;

@@ -21,13 +21,13 @@ $user = $_SESSION["user_login"];
           <div id="headerTitle">
             <a href="index.php">Group 9 </a>
           </div>
-          <!-- LATER - Sprint 4
+          
           <div class="headerSearch">
             <form action="search.php" method="GET" id="search">
-              <input type="text" name="q" size="60" placeholder="Search ..."/>
+              <input type="text" name="q" size="60" placeholder="Search for user ..."/>
             </form>
           </div>
-          -->
+          
 
           <?php
           if (isset($_SESSION["user_login"])) {

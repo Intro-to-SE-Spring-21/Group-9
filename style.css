@@ -8,6 +8,7 @@
 
 .header {
     background-color: #00B9ED;
+    position: absolute;
     height: 75px;
     border-bottom: 0px;
     padding-left: auto;
@@ -17,6 +18,7 @@
 
 .headerWrapper {
     background-color: #00B9ED;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -27,9 +29,20 @@
 
 .headerSearch {
     background-color: #00B9ED;
-    position: absolute;
-    top: 13px;
-    margin-left: 135px;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 20px;
+    height: 50px;
+}
+
+.headerSearch form {
+    background-color: #00B9ED;
+    margin: auto;
+}
+
+.headerSearch input {
+    margin: auto;
 }
 
 #headerTitle {
@@ -140,6 +153,7 @@ input[type="submit"] {
 .tableWrapper {
     width: 800px;
     margin: 0px auto 0px auto;
+    padding-top: 75px;
 }
 
 .profileTitle {
@@ -148,9 +162,10 @@ input[type="submit"] {
     padding: 5px;
     width: 50%;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 80px;
     outline: none;
     justify-content: center;
     text-align: center;

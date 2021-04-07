@@ -115,7 +115,12 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 					'postid': postid
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').html(response + " likes");
+					if (response) {
+						$post.parent().find('span.likes_count').html(response + " likes");
+					}
+					else {
+						alert("You cannot like this post.");
+					}
 				}
 			});
 		});
@@ -133,7 +138,12 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 					'postid': postid
 				},
 				success: function(response){
-					$post.parent().find('span.likes_count').html(response + " likes");
+					if (response) {
+						$post.parent().find('span.likes_count').html(response + " likes");
+					}
+					else {
+						alert("You cannot dislike this post.");
+					}
 				}
 			});
 		});

@@ -119,6 +119,9 @@ $getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$userna
 					if (response == "1") {
 						alert("You must be logged in to follow another user.");
 					}
+					else if (response == "2") {
+						alert("You cannot follow yourself.");
+					}
 					else {
 						location.reload();
 					}

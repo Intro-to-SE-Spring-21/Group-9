@@ -8,6 +8,7 @@
 
 .header {
     background-color: #00B9ED;
+    position: absolute;
     height: 75px;
     border-bottom: 0px;
     padding-left: auto;
@@ -17,6 +18,7 @@
 
 .headerWrapper {
     background-color: #00B9ED;
+    position: absolute;
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -27,9 +29,20 @@
 
 .headerSearch {
     background-color: #00B9ED;
-    position: absolute;
-    top: 13px;
-    margin-left: 135px;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 10px;
+    height: 50px;
+}
+
+.headerSearch form {
+    background-color: #00B9ED;
+    margin: auto;
+}
+
+.headerSearch input {
+    margin: auto;
 }
 
 #headerTitle {
@@ -140,6 +153,11 @@ input[type="submit"] {
 .tableWrapper {
     width: 800px;
     margin: 0px auto 0px auto;
+    padding-top: 75px;
+}
+
+center form {
+    padding-top: 75px;
 }
 
 .profileTitle {
@@ -148,9 +166,10 @@ input[type="submit"] {
     padding: 5px;
     width: 50%;
     margin-bottom: 20px;
-    margin-top: 5px;
+    margin-top: 0px;
     margin-left: auto;
     margin-right: auto;
+    padding-top: 80px;
     outline: none;
     justify-content: center;
     text-align: center;
@@ -307,5 +326,42 @@ input[type="submit"] {
 }
 
 .follower a:hover {
+    text-decoration: underline;
+}
+
+.following {
+    display: block;
+    float: top;
+    width: 30%;
+    margin: 10px auto;
+    margin-top: 40px;
+    margin-right: 10px;
+    font-weight: 800;
+    color: #000;
+}
+
+.following p {
+    font-size: 24px;
+}
+
+.followed {
+    width: 30%;
+	margin: 10px auto;
+    margin-right: 10px;
+	border: 3px solid #cbcbcb;
+	padding: 5px 10px 10px 10px;
+    font-weight: 800;
+    color: #000;
+    float: top;
+    font-size: 16px;
+    text-align: center;
+}
+
+.followed a {
+    font-size: 20px;
+    text-decoration: none;
+}
+
+.followed a:hover {
     text-decoration: underline;
 }

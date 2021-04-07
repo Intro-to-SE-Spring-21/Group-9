@@ -18,23 +18,23 @@ if (isset($_GET['u'])) {
 	}
 	}
 }
-/*
-$post = @$_POST['post'];
-if ($post != "") {
-$date_added = date("Y-m-d");
-$added_by = $user;
-$user_posted_to = $username;
 
-$sqlCommand = "INSERT INTO posts VALUES(NULL, '$post', '$date_added', '$added_by', '$user_posted_to', 0)";
-$query = mysqli_query($conn, $sqlCommand) or die (mysqli_error($conn));
-}
-else {
-	echo "You must enter something in the post field before you can sent it.";
-}*/
 ?>
 <div class="profileTitle">
 	<p><?php echo "$username"; ?></p>
-	<span class="follow" data-id="<?php echo $username; ?>">Follow</span>
+
+<?php
+$followrows = mysqli_query($conn, "SELECT * FROM follows WHERE follower='$user' AND followed='$username'");
+$followbool = mysqli_num_rows($followrows);
+if ($followbool) {
+	$followtext = "Following";
+}
+else {
+	$followtext = "Follow";
+}
+?>
+
+	<span class="follow" data-id="<?php echo $username; ?>"><?php echo $followtext; ?></span>
 </div>
 
 <div class="postForm">
@@ -106,6 +106,7 @@ $getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$userna
 		// when the user clicks on follow
 		$('.follow').on('click', function(){
 			var followed = $(this).data('id');
+			var followbutton = $(this);
 
 			$.ajax({
 				url: 'follow.php',
@@ -115,7 +116,12 @@ $getfollows = mysqli_query($conn, "SELECT * FROM follows WHERE followed='$userna
 					'followed': followed
 				},
 				success: function(response){
-
+					if (response == "1") {
+						alert("You must be logged in to follow another user.");
+					}
+					else {
+						location.reload();
+					}
 				}
 			});
 		});

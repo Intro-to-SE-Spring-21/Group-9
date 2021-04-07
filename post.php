@@ -9,6 +9,28 @@ else {
 $user = $_SESSION["user_login"];
 }
 
+if (isset($_POST['posted'])) {
+	if ($user) {
+		$posttext = $_POST['posttext'];
+		$date_added = date("Y-m-d");
+		$added_by = $user;
+		$user_posted_to = $_POST['username'];
+
+		if ($posttext) {
+			$sqlCommand = "INSERT INTO posts VALUES(NULL, '$posttext', '$date_added', '$added_by', '$user_posted_to', 0)";
+			$query = mysqli_query($conn, $sqlCommand) or die (mysqli_error($conn));
+			exit();
+		}
+		else {
+			echo "2";
+			exit();
+		}
+	}
+	else {
+		echo "1";
+		exit();
+	}
+}
 
 if (isset($_POST['deleted'])) {
 	if ($user) {

@@ -18,7 +18,7 @@ if (isset($_GET['u'])) {
 	}
 	}
 }
-
+/*
 $post = @$_POST['post'];
 if ($post != "") {
 $date_added = date("Y-m-d");
@@ -30,7 +30,7 @@ $query = mysqli_query($conn, $sqlCommand) or die (mysqli_error($conn));
 }
 else {
 	echo "You must enter something in the post field before you can sent it.";
-}
+}*/
 ?>
 
 <h2>Profile page for: <?php echo "$username"; ?></h2>
@@ -38,10 +38,9 @@ else {
 <div id="status">
 </div>
 <div class="postForm">
-	<form action="" method="POST">
 	<textarea id="postSubmitArea" name="post" rows="4" cols="58"></textarea>
-	<input id="postSubmitButton" type="submit" name="send"  value="Post"/>
-</form>
+	<input id="postSubmitButton" type="submit" name="send" value="Post" data-id="<?php echo $username; ?>"/>
+</div>
 </div>
 <div class="profilePosts">
 <?php
@@ -79,6 +78,34 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
+		
+		// when the user clicks on post
+		$('#postSubmitButton').on('click', function(){
+			var posttext = $('#postSubmitArea').val();
+			var username = $(this).data('id');
+
+			$.ajax({
+				url: 'post.php',
+				type: 'post',
+				data: {
+					'posted': 1,
+					'posttext': posttext,
+					'username': username
+				},
+				success: function(response){
+					if (response == "1") {
+						alert("You cannot post without being logged in.");
+					}
+					else if (response == "2") {
+						alert("You cannot post without filling in the text area.");
+					}
+					else {
+						location.reload();
+					}				
+				}
+			});
+		});
+
 		// when the user clicks on delete
 		$('.delete').on('click', function(){
 			var postid = $(this).data('id');

@@ -32,9 +32,9 @@ else {
 	echo "You must enter something in the post field before you can sent it.";
 }*/
 ?>
-
-<h2>Profile page for: <?php echo "$username"; ?></h2>
-<h2>First name: <?php echo "$firstname"; ?></h2>
+<div class="profileTitle">
+	<p><?php echo "$username"; ?></p>
+</div>
 
 <div class="postForm">
 	<textarea id="postSubmitArea" name="post" rows="4" cols="58"></textarea>
@@ -58,12 +58,14 @@ $getposts = mysqli_query($conn, "SELECT * FROM posts WHERE user_posted_to='$user
 	<?php echo "Posted by: <a href='$added_by'>$added_by</a> on $date_added"; ?>
 
 	<div style="padding: 2px; margin-top: 5px;">
-		<span class="delete" data-id="<?php echo $rowid; ?>">Delete</span>
+		<span class="delete" data-id="<?php echo $rowid; ?>" style="margin-right: 20px;">Delete</span>
 		<span class="like" data-id="<?php echo $rowid; ?>">Like</span> 
 		<span class="unlike" data-id="<?php echo $rowid; ?>">Dislike</span>
 
-		<span class="likes_count"><?php echo $row['likes']; ?> likes</span>
-		<div  style='max-width: 600px; font-size: 16px;'>
+		<span class="likes_count" style="background-color: #eff5f9; color: #000; margin-left: 50px;"><?php echo $row['likes']; ?> likes</span>
+		<div  style="padding-top: 10px;">
+			<hr />
+			<br>
 			<?php echo $body ?> 
 			<br>
 		</div>

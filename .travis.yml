@@ -2,11 +2,12 @@ language: php
 
 php:
   - 7.4
-  env: DB=travis:phpunit
   - 7.3
-  env: DB=travis:phpunit
   
 env:
   - DB=mysql
 
-script: phpunit
+before_script: 
+  - chmod +x testunit.php
+
+script: testunit.php
